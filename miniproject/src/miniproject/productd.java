@@ -74,22 +74,14 @@ public class productd {
 		foodPanel.setLayout(null);
 		
 		String food[]= {"TooYum","Lays","Snickers"};
-		JComboBox<String> foodList = new JComboBox<>(food);
-		foodList.setBounds(218, 11, 270, 27);
+		DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<String>(food);
+		JComboBox foodList = new JComboBox<>(comboModel);
+		foodList.setBounds(218, 101, 270, 27);
 		foodPanel.add(foodList);
 		
 		JLabel foodProductLabel = new JLabel("Product");
-		foodProductLabel.setBounds(73, 11, 98, 27);
+		foodProductLabel.setBounds(73, 101, 98, 27);
 		foodPanel.add(foodProductLabel);
-		
-		JTextArea foodTA = new JTextArea();
-		foodTA.setEditable(false);
-		foodTA.setBounds(218, 54, 269, 64);
-		foodPanel.add(foodTA);
-		
-		JLabel foodDescLabel = new JLabel("Description:");
-		foodDescLabel.setBounds(73, 59, 98, 14);
-		foodPanel.add(foodDescLabel);
 		
 		JTextArea foodPriceTA = new JTextArea();
 		foodPriceTA.setEditable(false);
@@ -119,23 +111,15 @@ public class productd {
 		beveragesPanel.setLayout(null);
 		
 		String bev[]= {"Coke","pepsi","fanta"};
-		JComboBox<String> bevList = new JComboBox<>(bev);
+		DefaultComboBoxModel<String> comboModel2 = new DefaultComboBoxModel<String>(bev);
+		JComboBox bevList = new JComboBox<>(comboModel2);
 
-		bevList.setBounds(218, 11, 270, 27);
+		bevList.setBounds(218, 101, 270, 27);
 		beveragesPanel.add(bevList);
 		
 		JLabel bevProductLabel = new JLabel("Product");
-		bevProductLabel.setBounds(73, 11, 98, 27);
+		bevProductLabel.setBounds(73, 101, 98, 27);
 		beveragesPanel.add(bevProductLabel);
-		
-		JTextArea bevTA = new JTextArea();
-		bevTA.setEditable(false);
-		bevTA.setBounds(218, 54, 269, 64);
-		beveragesPanel.add(bevTA);
-		
-		JLabel bevDescLabel = new JLabel("Description:");
-		bevDescLabel.setBounds(73, 59, 98, 14);
-		beveragesPanel.add(bevDescLabel);
 		
 		JTextArea bevPriceTA = new JTextArea();
 		bevPriceTA.setEditable(false);
@@ -163,6 +147,44 @@ public class productd {
 		JPanel checkoutPanel = new JPanel();
 		tabbedPane.addTab("Checkout", null, checkoutPanel, null);
 		checkoutPanel.setLayout(null);
+		
+		JLabel itemsLabel = new JLabel("Items in Cart");
+		itemsLabel.setBounds(50, 36, 104, 14);
+		checkoutPanel.add(itemsLabel);
+		
+		JTextArea cartTA = new JTextArea();
+		cartTA.setEditable(false);
+		cartTA.setBounds(195, 31, 337, 163);
+		checkoutPanel.add(cartTA);
+		
+		JButton totalButton = new JButton("Total");
+		totalButton.setBounds(443, 213, 89, 23);
+		checkoutPanel.add(totalButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(514, 329, 89, 23);
+		checkoutPanel.add(btnNewButton_1);
+		
+		JTextArea totalPriceTA = new JTextArea();
+		totalPriceTA.setEditable(false);
+		totalPriceTA.setBounds(443, 245, 89, 23);
+		checkoutPanel.add(totalPriceTA);
+		
+		JButton checkoutButton = new JButton("Checkout");
+		checkoutButton.setBounds(443, 279, 89, 23);
+		checkoutPanel.add(checkoutButton);
+		
+		JLabel totalLabel = new JLabel("Calculate Total");
+		totalLabel.setBounds(195, 217, 136, 14);
+		checkoutPanel.add(totalLabel);
+		
+		JLabel totalPriceLabel = new JLabel("Total Price");
+		totalPriceLabel.setBounds(195, 250, 115, 14);
+		checkoutPanel.add(totalPriceLabel);
+		
+		JLabel checkoutLabel = new JLabel("Checkout");
+		checkoutLabel.setBounds(195, 283, 89, 14);
+		checkoutPanel.add(checkoutLabel);
 	
 		
 		
