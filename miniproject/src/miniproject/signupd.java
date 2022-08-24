@@ -112,7 +112,7 @@ public class signupd  {
 				database db = new database("root", "root");
 				try {
 					
-					db.signup(textField.getText(),textField_1.getText(),textField_2.getText(),textField_3.getText(),textField_4.getText(),textField_5.getText(),Integer.parseInt(textField_6.getText()));
+					db.signup(textField.getText(),textField_1.getText(),textField_2.getText(),Integer.parseInt(textField_3.getText()),textField_4.getText(),textField_5.getText(),Integer.parseInt(textField_6.getText()));
 					JOptionPane.showMessageDialog (frame, "user account created");
 					textField.setText("");
 					textField_1.setText("");
