@@ -1,11 +1,14 @@
 package miniproject;
 
+import javax.swing.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -16,7 +19,7 @@ import javax.swing.JList;
 
 public class admind {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -60,7 +63,8 @@ public class admind {
 		tabbedPane.addTab("Update Items", null, panel, null);
 		panel.setLayout(null);
 		
-		JList foodListAdmin = new JList();
+		String food[]= {"TooYum","Lays","Snickers"};
+		JComboBox<String> foodListAdmin = new JComboBox<>(food);
 		foodListAdmin.setBounds(120, 65, 106, 27);
 		panel.add(foodListAdmin);
 		
@@ -86,20 +90,55 @@ public class admind {
 		panel.add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("Update Food Item");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				database db=new database("root","root");
+				try {
+					db.updateitem(foodListAdmin.getItemAt(foodListAdmin.getSelectedIndex()),Integer.parseInt(textField.getText()));
+					
+				} catch (NumberFormatException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				JOptionPane.showMessageDialog (frame, "Item updated");
+				textField.setText("");
+				
+			}
+		});
 		btnNewButton.setBounds(74, 181, 130, 23);
 		panel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Update Beverage Item");
-		btnNewButton_1.setBounds(390, 181, 156, 23);
-		panel.add(btnNewButton_1);
+		
 		
 		JLabel lblNewLabel_4 = new JLabel("Product");
 		lblNewLabel_4.setBounds(362, 66, 46, 14);
 		panel.add(lblNewLabel_4);
 		
-		JList BevListAdmin = new JList();
+		String bev[]= {"Coke","pepsi","fanta"};
+		JComboBox<String> BevListAdmin = new JComboBox<>(bev);
 		BevListAdmin.setBounds(455, 65, 106, 27);
 		panel.add(BevListAdmin);
+		
+		JButton btnNewButton_1 = new JButton("Update Beverage Item");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				database db=new database("root","root");
+				try {
+					db.updateitem(BevListAdmin.getItemAt(BevListAdmin.getSelectedIndex()),Integer.parseInt(textField_1.getText()));
+					
+				} catch (NumberFormatException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				JOptionPane.showMessageDialog (frame, "Item updated");
+				textField_1.setText("");
+				
+			}
+		});
+		btnNewButton_1.setBounds(390, 181, 156, 23);
+		panel.add(btnNewButton_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -111,10 +150,21 @@ public class admind {
 		panel.add(lblNewLabel_1_1);
 		
 		JButton btnNewButton_2 = new JButton("Log Out");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logind in=new logind();
+				in.frame.setVisible(true);
+			    frame.setVisible(false);
+			    frame.dispose();
+			    JOptionPane.showMessageDialog (in.frame, "Logged Out");
+			}
+		});
 		btnNewButton_2.setBounds(455, 253, 89, 23);
 		panel.add(btnNewButton_2);
+		
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Orders", null, panel_1, null);
 	}
 }
+
