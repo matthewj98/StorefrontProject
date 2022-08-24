@@ -1,11 +1,13 @@
 package miniproject;
 
+import javax.swing.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComboBox;
 import javax.swing.JMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
@@ -26,14 +28,14 @@ import javax.swing.JTextField;
 
 public class productd {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField foodQty;
 	private JTextField bevQty;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public  void productde() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,7 +60,7 @@ public class productd {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 639, 428);
+		frame.setBounds(100, 100, 646, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ButtonGroup bg=new ButtonGroup();
 		frame.getContentPane().setLayout(null);
@@ -71,7 +73,8 @@ public class productd {
 		tabbedPane.addTab("Food", null, foodPanel, null);
 		foodPanel.setLayout(null);
 		
-		JList foodList = new JList();
+		String food[]= {"TooYum","Lays","Snickers"};
+		JComboBox<String> foodList = new JComboBox<>(food);
 		foodList.setBounds(218, 11, 270, 27);
 		foodPanel.add(foodList);
 		
@@ -115,7 +118,9 @@ public class productd {
 		tabbedPane.addTab("Beverages", null, beveragesPanel, null);
 		beveragesPanel.setLayout(null);
 		
-		JList bevList = new JList();
+		String bev[]= {"Coke","pepsi","fanta"};
+		JComboBox<String> bevList = new JComboBox<>(bev);
+
 		bevList.setBounds(218, 11, 270, 27);
 		beveragesPanel.add(bevList);
 		
