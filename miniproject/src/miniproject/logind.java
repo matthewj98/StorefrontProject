@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class logind {
 
@@ -45,29 +46,30 @@ public class logind {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 650, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login");
-		lblNewLabel.setBounds(23, 55, 48, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(289, 37, 135, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Username");
-		lblNewLabel_1.setBounds(50, 102, 48, 14);
+		lblNewLabel_1.setBounds(199, 127, 66, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setBounds(50, 127, 48, 14);
+		lblNewLabel_2.setBounds(199, 190, 66, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		textField = new JTextField();
-		textField.setBounds(151, 99, 96, 20);
+		textField.setBounds(275, 124, 149, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(151, 124, 96, 20);
+		textField_1.setBounds(275, 187, 149, 20);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -81,7 +83,7 @@ public class logind {
 			
 			}
 		});
-		btnNewButton.setBounds(50, 177, 89, 23);
+		btnNewButton.setBounds(74, 301, 89, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Login");
@@ -123,7 +125,7 @@ public class logind {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(245, 177, 89, 23);
+		btnNewButton_1.setBounds(469, 301, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
 	}
 
