@@ -112,6 +112,10 @@ public class logind {
 						if(db.login(textField.getText(),textField_1.getText()))
 						{
 							JOptionPane.showMessageDialog (frame, "you are sucessfully logined");
+							productd pd=new productd();
+							pd.productde();
+							frame.setVisible(false);
+						    frame.dispose();
 						}
 						else
 						{
