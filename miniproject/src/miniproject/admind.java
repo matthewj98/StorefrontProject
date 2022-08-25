@@ -1,20 +1,11 @@
 package miniproject;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JTabbedPane;
-import javax.swing.JPanel;
-import javax.swing.JList;
 
 public class admind {
 
@@ -50,6 +41,7 @@ public class admind {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(80, 80, 80));
 		frame.setBounds(100, 100, 650, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -59,11 +51,14 @@ public class admind {
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(221, 161, 31));
 		tabbedPane.addTab("Update Items", null, panel, null);
 		panel.setLayout(null);
 		
 		String food[]= {"TooYum","Lays","Snickers"};
+		DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<String>(food);
 		JComboBox<String> foodListAdmin = new JComboBox<>(food);
+		
 		foodListAdmin.setBounds(120, 65, 106, 27);
 		panel.add(foodListAdmin);
 		
@@ -115,6 +110,7 @@ public class admind {
 		panel.add(lblNewLabel_4);
 		
 		String bev[]= {"Coke","pepsi","fanta"};
+		DefaultComboBoxModel<String> comboModel1 = new DefaultComboBoxModel<String>(bev);
 		JComboBox<String> BevListAdmin = new JComboBox<>(bev);
 		BevListAdmin.setBounds(455, 65, 106, 27);
 		panel.add(BevListAdmin);
@@ -163,6 +159,7 @@ public class admind {
 		
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(221, 161, 31));
 		tabbedPane.addTab("Orders", null, panel_1, null);
 	}
 }

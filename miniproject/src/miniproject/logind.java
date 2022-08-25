@@ -6,11 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 public class logind {
 
@@ -46,30 +48,31 @@ public class logind {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(221, 161, 31));
 		frame.setBounds(100, 100, 650, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Login");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(289, 37, 135, 38);
+		lblNewLabel.setBounds(288, 123, 135, 38);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Username");
-		lblNewLabel_1.setBounds(199, 127, 66, 14);
+		lblNewLabel_1.setBounds(199, 182, 66, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setBounds(199, 190, 66, 14);
+		lblNewLabel_2.setBounds(199, 229, 66, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		textField = new JTextField();
-		textField.setBounds(275, 124, 149, 20);
+		textField.setBounds(275, 179, 149, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(275, 187, 149, 20);
+		textField_1.setBounds(275, 226, 149, 20);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -131,6 +134,9 @@ public class logind {
 		});
 		btnNewButton_1.setBounds(469, 301, 89, 23);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel(new ImageIcon("C:\\Users\\mjeff\\git\\MiniProject\\Logo.png"));
+		lblNewLabel_3.setBounds(68, 11, 490, 111);
+		frame.getContentPane().add(lblNewLabel_3);
 	}
-
 }

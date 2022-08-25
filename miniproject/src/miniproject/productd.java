@@ -15,12 +15,14 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 import java.awt.TextField;
+import java.awt.Color;
 
 public class productd {
 
 	JFrame frame;
 	private JTextField foodQty;
 	private JTextField bevQty;
+	private JTable cartTable;
 
 	/**
 	 * Launch the application.
@@ -52,6 +54,7 @@ public class productd {
 		 HashMap<String,Integer> map=new HashMap<String,Integer>();  
 		 database db=new database("root","root");
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(80, 80, 80));
 		frame.setBounds(100, 100, 646, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ButtonGroup bg=new ButtonGroup();
@@ -62,6 +65,7 @@ public class productd {
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel foodPanel = new JPanel();
+		foodPanel.setBackground(new Color(221, 161, 31));
 		tabbedPane.addTab("Food", null, foodPanel, null);
 		foodPanel.setLayout(null);
 		
@@ -152,6 +156,7 @@ public class productd {
 		foodPanel.add(foodQtyLabel);
 		
 		JPanel beveragesPanel = new JPanel();
+		beveragesPanel.setBackground(new Color(221, 161, 31));
 		tabbedPane.addTab("Beverages", null, beveragesPanel, null);
 		beveragesPanel.setLayout(null);
 		
@@ -247,17 +252,13 @@ JButton bevAddBtn = new JButton("Add To Cart");
 		beveragesPanel.add(bevQtyLabel);
 		
 		JPanel checkoutPanel = new JPanel();
+		checkoutPanel.setBackground(new Color(221, 161, 31));
 		tabbedPane.addTab("Checkout", null, checkoutPanel, null);
 		checkoutPanel.setLayout(null);
 		
 		JLabel itemsLabel = new JLabel("Items in Cart");
 		itemsLabel.setBounds(50, 36, 104, 14);
 		checkoutPanel.add(itemsLabel);
-		
-		JTextArea cartTA = new JTextArea();
-		cartTA.setEditable(false);
-		cartTA.setBounds(195, 31, 337, 163);
-		checkoutPanel.add(cartTA);
 		
 		JButton btnNewButton_1 = new JButton("Logout");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -291,7 +292,7 @@ JButton bevAddBtn = new JButton("Add To Cart");
 					} 
 					  }
 				ss+="Total amount"+"                                                                      "+total;
-				 cartTA.setText(ss);
+				 
 				
 				
 			}
@@ -299,6 +300,10 @@ JButton bevAddBtn = new JButton("Add To Cart");
 		});
 		checkoutButton.setBounds(50, 329, 89, 23);
 		checkoutPanel.add(checkoutButton);
+		
+		cartTable = new JTable();
+		cartTable.setBounds(164, 36, 337, 160);
+		checkoutPanel.add(cartTable);
 	
 		
 		
