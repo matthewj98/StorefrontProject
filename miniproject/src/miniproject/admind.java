@@ -1,5 +1,4 @@
 package miniproject;
-
 import javax.swing.*;
 import java.awt.EventQueue;
 
