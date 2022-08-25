@@ -1,12 +1,11 @@
 package miniproject;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
+
 
 public class database {
 	private Statement stmt;
@@ -31,14 +30,14 @@ public class database {
 		this.loggedIn = loggedIn;
 	}
 
-	public void signup(String fa, String la, String ad, String zc, String ua, String pa, int phone) throws SQLException
+	public void signup(String fa, String la, String ad, int zc, String ua, String pa,int phone) throws SQLException
 //	public void signup() throws SQLException
 	{
 
 		this.stmt = conn.createStatement();
 		this.rs = null;
 
-		String q = "INSERT into user(First_name,Last_name,address_1,zipcode,username,Passwd,phone_number)VALUES(\""
+		String q = "INSERT into useraccount(fname,lname,address,zipcode,username,password,phone)VALUES(\""
 				+ fa + "\",\"" + la + "\",\"" + ad + "\",\"" + zc + "\",\"" + ua + "\",\"" + pa + "\"," + phone + ");";
 
 		stmt.executeUpdate(q);
@@ -54,52 +53,99 @@ public class database {
 		this.stmt = conn.createStatement();
 		this.rs = null;
 		this.stmt = conn.createStatement();
-		this.rs = stmt.executeQuery("SELECT * FROM user where username=\"" + username + "\";");
+		this.rs = stmt.executeQuery("SELECT * FROM useraccount where username=\"" + username + "\";");
 
 		if (rs.next()) {
-			if (rs.getString("Passwd").equals(password)) {
-				
+			if (rs.getString("Password").equals(password)) {
+				rs.close();
 				return true;
 
 			}
 			else
 			{
+				rs.close();
 				return false;
 			}
+			
 		}
+		rs.close();
 		return false;
 
 	}
-	public boolean buy(int id,int qty) throws SQLException
+	public boolean buy(String id,int qty) throws SQLException
 	//public void signup() throws SQLException
 		{
 
 			this.stmt = conn.createStatement();
 			this.rs = null;
 			this.stmt = conn.createStatement();
-			this.rs = stmt.executeQuery("SELECT * FROM product where product_id=\"" + id + "\";");
+			this.rs = stmt.executeQuery("SELECT * FROM products where productName=\"" + id + "\";");
 			int qty1;
 			String upt;
 			if (rs.next()) {
 
-				if (rs.getInt("Quantity")<0 || rs.getInt("Quantity")<qty) {
-					
+				if (rs.getInt("quantity")<0 || rs.getInt("quantity")<qty) {
+					rs.close();
 					return false;
 
 				}
 				else 
 				{
-					
-					qty1=rs.getInt("Quantity")-qty;
-					upt= "UPDATE product	SET Quantity = \"" + qty1 +"\" WHERE product_id = \"" +id+"\" ";
-					stmt.executeUpdate(upt);
+					rs.close();
+					return true;
 				}
 			}
+			rs.close();
 			return true;
 
 		}
+	public int prize(String id) throws SQLException
+	{
+		this.stmt = conn.createStatement();
+		this.rs = null;
+		this.stmt = conn.createStatement();
+		this.rs = stmt.executeQuery("SELECT * FROM products where productName=\"" + id + "\";");
+		int qty1;
+		String upt;
+		if (rs.next()) {
+			
+			
 
-		public void updateitem(int id, int qty) throws SQLException
+			return (Integer)rs.getInt("prize");
+		}
+		rs.close();
+		return -1;
+	}
+	
+	public int bill(String id,int qty) throws SQLException
+	//public void signup() throws SQLException
+		{
+
+			this.stmt = conn.createStatement();
+			this.rs = null;
+			this.stmt = conn.createStatement();
+			this.rs = stmt.executeQuery("SELECT * FROM products where productName=\"" + id + "\";");
+			int qty1;
+			String upt;
+			if (rs.next()) {
+
+				
+					int priz=rs.getInt("prize");
+					qty1=rs.getInt("quantity")-qty;
+					upt= "UPDATE products	SET quantity = \"" + qty1 +"\" WHERE productName = \"" +id+"\" ";
+					stmt.executeUpdate(upt);
+					
+					
+					
+					rs.close();
+					return priz;
+				
+			}
+			rs.close();
+			return -1;
+		}
+
+		public void updateitem(String id, int qty) throws SQLException
 		// public void signup() throws SQLException
 		{
 			String upt;
@@ -107,11 +153,11 @@ public class database {
 			this.stmt = conn.createStatement();
 			this.rs = null;
 			this.stmt = conn.createStatement();
-			this.rs = stmt.executeQuery("SELECT * FROM product where product_id=\"" + id + "\";");
+			this.rs = stmt.executeQuery("SELECT * FROM products where  productName=\"" + id + "\";");
 			
 			if(rs.next())
 			{
-			qty1 = rs.getInt("Quantity")+ qty;
+			qty1 = rs.getInt("quantity")+ qty;
 			
 
 			}
@@ -121,26 +167,14 @@ public class database {
 				
 
 			}
-			upt = "UPDATE product SET Quantity = \"" + qty1 + "\" WHERE product_id = \"" + id + "\" ";
+			rs.close();
+			upt = "UPDATE products SET quantity = \"" + qty1 + "\" WHERE productName = \"" + id + "\" ";
 			stmt.executeUpdate(upt);
 			
-		}
-		
-		
-				
-				
-		public void newitem(int id,String prodn ,String prodcat,int qty,int pri) throws SQLException
-		// public void signup() throws SQLException
-		{
-			String upt;
-			int qty1;
-			this.stmt = conn.createStatement();
-			this.rs = null;
-			String q = "INSERT into product(product_id,Product_name,Product_category,Quantity,Prize)VALUES("
-					+ id + ",\"" + prodn + "\",\"" + prodcat + "\"," + qty + "," + pri + ");";
-
-			stmt.executeUpdate(q);
-
 			
 		}
+
+		
+		
+
 	}
