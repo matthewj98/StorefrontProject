@@ -22,7 +22,6 @@ public class productd {
 	JFrame frame;
 	private JTextField foodQty;
 	private JTextField bevQty;
-	private JTable cartTable;
 
 	/**
 	 * Launch the application.
@@ -261,6 +260,7 @@ JButton bevAddBtn = new JButton("Add To Cart");
 		checkoutPanel.add(itemsLabel);
 		
 		JButton btnNewButton_1 = new JButton("Logout");
+		btnNewButton_1.setBounds(514, 329, 89, 23);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				logind in=new logind();
@@ -270,12 +270,17 @@ JButton bevAddBtn = new JButton("Add To Cart");
 			    JOptionPane.showMessageDialog (in.frame, "Logged Out");
 			}
 		});
-		btnNewButton_1.setBounds(514, 329, 89, 23);
 		checkoutPanel.add(btnNewButton_1);
+	JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(183, 31, 366, 169);
+		checkoutPanel.add(scrollPane);
 		
-
+JTextArea cartTA = new JTextArea();
+scrollPane.setViewportView(cartTA);
+		
 	
 		JButton checkoutButton = new JButton("Checkout");
+		checkoutButton.setBounds(50, 329, 89, 23);
 		checkoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int total=0;
@@ -283,28 +288,38 @@ JButton bevAddBtn = new JButton("Add To Cart");
 				 for(Entry<String, Integer> m:map.entrySet()){  
 					   try {
 						int prize=db.bill(m.getKey(),m.getValue());
-					
-					 ss+=m.getKey()+"                   "+m.getValue()+"                   "+prize+"                   "+m.getValue()*prize+"\n";
+						StringBuilder sb1 = new StringBuilder(m.getKey());
+						String s1 = m.getValue().toString();
+						StringBuilder sb2 = new StringBuilder(s1);
+						System.out.println(m.getKey() + sb1.toString());
+						System.out.println(m.getValue() + sb2.toString());
+						int dif = 30 - sb1.length();
+						int dif2 = 30 - sb2.length();
+						for(int i = 0; i<dif;i++) {
+							sb1.append(" ");
+						}
+						for(int i = 0; i<dif2;i++) {
+							sb2.append(" ");
+						}
+					 ss+=sb1.toString()+sb2.toString()+prize+"                       "+m.getValue()*prize+"\n";
+					 System.out.println(ss);
 						total+=m.getValue()*prize;
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch blockm.getValue()*prize
 						e1.printStackTrace();
 					} 
 					  }
-				ss+="Total amount"+"                                                                      "+total;
-				 
+				ss+="Total amount"+"                                                                         "+total;
+				 cartTA.setText(ss);
 				
 				
 			}
 			
 		});
-		checkoutButton.setBounds(50, 329, 89, 23);
 		checkoutPanel.add(checkoutButton);
 		
-		cartTable = new JTable();
-		cartTable.setBounds(164, 36, 337, 160);
-		checkoutPanel.add(cartTable);
-	
+		
+		
 		
 		
 		
