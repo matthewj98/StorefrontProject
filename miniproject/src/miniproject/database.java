@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 
 
 public class database {
@@ -36,9 +38,9 @@ public class database {
 
 		this.stmt = conn.createStatement();
 		this.rs = null;
-
+		String password = BCrypt.hashpw(pa, BCrypt.gensalt());
 		String q = "INSERT into useraccount(fname,lname,address,zipcode,username,password,phone)VALUES(\""
-				+ fa + "\",\"" + la + "\",\"" + ad + "\",\"" + zc + "\",\"" + ua + "\",\"" + pa + "\"," + phone + ");";
+				+ fa + "\",\"" + la + "\",\"" + ad + "\",\"" + zc + "\",\"" + ua + "\",\"" + password + "\"," + phone + ");";
 
 		stmt.executeUpdate(q);
 
@@ -56,11 +58,14 @@ public class database {
 		this.rs = stmt.executeQuery("SELECT * FROM useraccount where username=\"" + username + "\";");
 
 		if (rs.next()) {
-			if (rs.getString("Password").equals(password)) {
-				rs.close();
+			if (BCrypt.checkpw(password, rs.getString("Password"))){
 				return true;
-
 			}
+//			if (rs.getString("Password").equals(password)) {
+//				rs.close();
+//				return true;
+//
+//			}
 			else
 			{
 				rs.close();
